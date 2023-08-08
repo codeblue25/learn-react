@@ -7,20 +7,43 @@
 
 <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
-<script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js "></script>
+
+<script type="text/babel">
   const root = document.getElementById('root')
-  const span = React.createElement(
-    'span', 
-    {  id : 'thisIsSpan', style: {color : 'blue'}, onMouseEnter: () => console.log('mouse enter') }, 
-    'Hello ! '
+
+  // const span = React.createElement(
+  //   'span', 
+  //   {  id : 'thisIsSpan', style: {color : 'blue'}, onMouseEnter: () => console.log('mouse enter') }, 
+  //   'Hello ! '
+  // )
+
+  const Span = () => (
+    <span id="thisIsSpan" onMouseEnter={() => console.log('mouse enter')}>
+      Hello ! 
+    </span>
+  );
+
+  // const btn = React.createElement('button', {
+  //   onClick: () => console.log('i am button from React! ')
+  // }, 'Click !')
+
+  const Btn = () => (
+    <button onClick={() => console.log('i am button from React! ')}>
+      Click !
+     </button>
   )
-  const btn = React.createElement('button', {
-    onClick: () => console.log('i am button from React! ')
-  }, 'Click !')
 
-  const wrapper = React.createElement('div', null, [span, btn])
+  // const wrapper = React.createElement('div', null, [span, btn])
 
-  ReactDOM.render(wrapper, root)
+  const Wrapper = () => (
+    <div>
+      <Span />
+      <Btn />
+    </div>
+  )
+
+  ReactDOM.render(<Wrapper />, root)
 </script>
 
 </html>
