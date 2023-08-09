@@ -11,39 +11,25 @@
 
 <script type="text/babel">
   const root = document.getElementById('root')
+  let counter = 0;
 
-  // const span = React.createElement(
-  //   'span', 
-  //   {  id : 'thisIsSpan', style: {color : 'blue'}, onMouseEnter: () => console.log('mouse enter') }, 
-  //   'Hello ! '
-  // )
+  function handleClick() {
+    counter += 1
+    render()
+  }
 
-  const Span = () => (
-    <span id="thisIsSpan" onMouseEnter={() => console.log('mouse enter')}>
-      Hello ! 
-    </span>
-  );
-
-  // const btn = React.createElement('button', {
-  //   onClick: () => console.log('i am button from React! ')
-  // }, 'Click !')
-
-  const Btn = () => (
-    <button onClick={() => console.log('i am button from React! ')}>
-      Click !
-     </button>
-  )
-
-  // const wrapper = React.createElement('div', null, [span, btn])
+  function render() {
+    ReactDOM.render(<Wrapper />, root)
+  }
 
   const Wrapper = () => (
     <div>
-      <Span />
-      <Btn />
+      <span>Total clicks: {counter}</span>
+      <button id="btn" onClick={handleClick}>Click</button>
     </div>
   )
 
-  ReactDOM.render(<Wrapper />, root)
+  render()
 </script>
 
 </html>
