@@ -11,25 +11,22 @@
 
 <script type="text/babel">
   const root = document.getElementById('root')
-  let counter = 0;
+  
+  const  App = () =>  {
+    const [counter, setCounter] = React.useState(0);
+    const handleClick = () => {
+      setCounter(counter + 1)
+    }
 
-  function handleClick() {
-    counter += 1
-    render()
-  }
-
-  function render() {
-    ReactDOM.render(<Wrapper />, root)
-  }
-
-  const Wrapper = () => (
-    <div>
+    return (
+      <div>
       <span>Total clicks: {counter}</span>
       <button id="btn" onClick={handleClick}>Click</button>
-    </div>
-  )
+      </div>
+    )
+  }
 
-  render()
+  ReactDOM.render(<App />, root)
 </script>
 
 </html>
