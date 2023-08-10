@@ -16,20 +16,26 @@
     const [minutes, setMinutes] = React.useState()
     const changeMinutes = (event) => {
       setMinutes(event.target.value)
-
+    }
+    const resetMinutes = () => {
+      setMinutes(0)
     }
 
     return (
       <div>
         <h1>Super Converter</h1>
 
-        <label htmlFor="minutes">Minutes</label>
-        <input type="number" id="minutes" value={minutes} placeholder="minutes" onChange={changeMinutes} />
+        <div>
+          <label htmlFor="minutes">Minutes</label>
+          <input type="number" id="minutes" value={minutes} placeholder="minutes" onChange={changeMinutes} />
+        </div>
 
-        <h4>You want to convert {minutes} minutes to ...</h4>
+        <div>
+          <label htmlFor="hours">Hours</label>
+          <input type="number" id="hours" value={minutes / 60} placeholder="hours" disabled />  
+        </div>
 
-        <label htmlFor="hours">Hours</label>
-        <input type="number" id="hours" placeholder="hours" />
+        <button onClick={resetMinutes}>Reset</button>
       </div>
     )
   }
