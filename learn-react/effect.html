@@ -18,7 +18,7 @@
       const addCounter = (event) => {
         setCounter((prev) => prev + 1);
       };
-      console.log("I run all the time");
+      // console.log("I run all the time");
 
       const inputKeword = (event) => {
         setKeyword(event.target.value);
@@ -29,10 +29,16 @@
       }, []);
 
       React.useEffect(() => {
-        if (keyword !== "" && keyword.length > 4) {
-          console.log("Search for", keyword);
-        }
+        console.log("I run when 'keyword' changes");
       }, [keyword]);
+
+      React.useEffect(() => {
+        console.log("I run when 'counter' changes");
+      }, [counter]);
+
+      React.useEffect(() => {
+        console.log("I run when 'keyword & counter' change");
+      }, [keyword, counter]);
 
       return (
         <div>
