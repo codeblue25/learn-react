@@ -1,39 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+  <body>
+    <div id="root"></div>
+  </body>
 
-<body>
-  <div id="root"></div>
-</body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js "></script>
 
-<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
-<script src="https://unpkg.com/@babel/standalone/babel.min.js "></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
 
-<script type="text/babel">
-  const root = document.getElementById('root')
+    const App = () => {
+      const [counter, setCounter] = React.useState(0);
+      const [keyword, setKeyword] = React.useState("");
 
-  const  App = () =>  {
-    const [counter, setCounter] = React.useState(0)
-    const addCounter = (event) => {
-      setCounter(prev => prev + 1)
-    }
-    console.log("I run all the time")
-    
-    const callOnlyOnce = () => {
-      console.log("I run only once")
-    }
+      const addCounter = (event) => {
+        setCounter((prev) => prev + 1);
+      };
+      console.log("I run all the time");
 
-    React.useEffect(callOnlyOnce, [])
+      const inputKeword = (event) => {
+        setKeyword(event.target.value);
+      };
 
-    return (
-      <div>
-        <h1>{counter}</h1>
-        <button onClick={addCounter}>click me</button>
-      </div>
-    )
-  }
+      React.useEffect(() => {
+        console.log("I run only once");
+      }, []);
 
-  ReactDOM.render(<App />, root)
-</script>
+      React.useEffect(() => {
+        if (keyword !== "" && keyword.length > 4) {
+          console.log("Search for", keyword);
+        }
+      }, [keyword]);
 
+      return (
+        <div>
+          <input
+            type="text"
+            placeholder="Please more than 5 characters"
+            value={keyword}
+            onChange={inputKeword}
+          />
+          <h1>{counter}</h1>
+          <button onClick={addCounter}>click me</button>
+        </div>
+      );
+    };
+
+    ReactDOM.render(<App />, root);
+  </script>
 </html>
