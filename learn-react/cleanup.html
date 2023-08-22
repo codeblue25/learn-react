@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div id="root"></div>
+  </body>
+
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js "></script>
+
+  <script type="text/babel">
+    const root = document.getElementById("root");
+
+    // const Hello = () => {
+    //   React.useEffect(() => {
+    //     console.log("Created");
+    //     return () => console.log("Destroyed");
+    //   }, []);
+    //   return <h1>Hello !</h1>;
+    // };
+
+    const Hello = () => {
+      function destroyFn() {
+        console.log("Destroyed");
+      }
+      function createFn() {
+        console.log("Created");
+        return destroyFn;
+      }
+      React.useEffect(createFn, []);
+      return <h1>Hello !</h1>;
+    };
+
+    const App = () => {
+      const [showing, setShowing] = React.useState(false);
+
+      const changeShowing = () => {
+        setShowing((prev) => !prev);
+      };
+
+      return (
+        <div>
+          <button onClick={changeShowing}>{showing ? "Hide" : "Show"}</button>
+          {showing ? <Hello /> : null}
+        </div>
+      );
+    };
+
+    ReactDOM.render(<App />, root);
+  </script>
+</html>
