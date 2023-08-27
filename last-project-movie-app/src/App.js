@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import styles from './App.module.css';
+import Movie from './Movie.js'
+
+import PropTypes from 'prop-types';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -11,8 +13,6 @@ function App() {
     const json = await response.json()
     setMovies(json.data.movies);
     setLoading(false);
-
-    console.log(json.data.movies)
    }
 
   useEffect(() => {
@@ -24,25 +24,24 @@ function App() {
       <h1>The Movies !</h1>
       {loading ? <strong>Loading...</strong> : null}
 
-
         {movies.map((movie) => (
-          <div className={styles.card} key={movie.id}>
-            <div className={styles.image}>
-              <img src={movie.medium_cover_image} />
-            </div>
-            <div>
-              <h3>{movie.title}</h3>
-              {movie.genres.map((genere) => (
-                <div className={styles.chip} key={genere}>
-                  {genere}
-                </div>
-              ))}
-              <p>{movie.summary}</p>
-            </div>
-          </div>
+          <Movie
+            key={movie.id}
+            coverImage={movie.medium_cover_image}
+            title={movie.title}
+            genres={movie.genres}
+            summary={movie.summary}
+          />
         ))}
     </div>
   );
+}
+
+Movie.propTypes = {
+  coverImage: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  genres:PropTypes.arrayOf(PropTypes.string).isRequired,
+  summary:PropTypes.string.isRequired,
 }
 
 export default App;
