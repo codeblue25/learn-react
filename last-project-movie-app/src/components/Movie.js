@@ -1,4 +1,5 @@
 import styles from './Movie.module.css';
+import { Link } from "react-router-dom";
 
 function Movie({coverImage, title, genres, summary}) {
   return (
@@ -7,7 +8,9 @@ function Movie({coverImage, title, genres, summary}) {
         <img src={coverImage} alt={title} />
       </div>
       <div>
-        <h3>{title}</h3>
+        <h3>
+          <Link to="/movie">{title}</Link>
+        </h3>
         {genres.map((genere) => (
           <div className={styles.chip} key={genere}>
             {genere}
