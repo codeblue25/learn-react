@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import Movie from '../components/Movie'
 
-import PropTypes from 'prop-types';
-
 function Home() {
   const [loading, setLoading] = useState(true);
   const [movies, setMovies] = useState([])
@@ -27,6 +25,7 @@ function Home() {
         {movies.map((movie) => (
           <Movie
             key={movie.id}
+            id={movie.id}
             coverImage={movie.medium_cover_image}
             title={movie.title}
             genres={movie.genres}
@@ -35,13 +34,6 @@ function Home() {
         ))}
     </div>
   );
-}
-
-Movie.propTypes = {
-  coverImage: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  genres:PropTypes.arrayOf(PropTypes.string).isRequired,
-  summary:PropTypes.string.isRequired,
 }
 
 export default Home;
